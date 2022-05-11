@@ -1,0 +1,11 @@
+name, subject, marks
+kasun, sinhala, 25
+sadun, maths, 45
+tevin, english, 56
+kasun, maths, 80
+sadun, sinhala, 75
+tevin, sinhala, 48
+kasun, english, 20
+sadun, english, 40
+tevin, maths, 18
+anil, maths, 50
