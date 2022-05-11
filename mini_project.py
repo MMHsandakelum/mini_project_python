@@ -7,7 +7,10 @@ def top_marks(subject, dataset):
             max_marks = marks
             stu_name = name
 
-    print(stu_name, max_marks)
+    return stu_name, max_marks
+
+def get_marks(record: tuple):
+    return (record[1])
 
 lines = None
 with open('data.txt') as file:
@@ -19,6 +22,8 @@ if not lines:
 
 marks_lines = lines[1:]
 subject_marks = {}
+student_marks = {}
+messages = []
 
 for lines in marks_lines:
     entries = lines.split()
@@ -32,7 +37,30 @@ for lines in marks_lines:
 
     subject_marks[subject][name] = marks
 
+    prev_marks = student_marks.get(name, 0)
+    student_marks[name] = prev_marks + marks
+
 # print(subject_marks)
 
 for subject, dataset in subject_marks.items():
-    top_marks(subject, dataset)
+    name, marks = top_marks(subject, dataset)
+    msg = f"Top student for {subject} is {name} with {marks} marks. "
+    messages.append(msg)
+    print(msg)
+
+marks_list = [(name, marks) for name, marks in student_marks.items() ]
+
+marks_list.sort(key=get_marks, reverse=True)
+
+top = marks_list[0]
+msg = f"Top student is {top[0]} with {top[1]} marks"
+messages.append(msg)
+print(msg)
+
+
+with open('result.txt', 'w') as file:
+    for msg in messages:
+        file.write(msg)
+        file.write('\n')
+
+# print(student_marks)
