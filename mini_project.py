@@ -1,3 +1,14 @@
+def top_marks(subject, dataset):
+    max_marks = 0
+    stu_name = ""
+
+    for name, marks in dataset.items():
+        if max_marks < marks:
+            max_marks = marks
+            stu_name = name
+
+    print(stu_name, max_marks)
+
 lines = None
 with open('data.txt') as file:
     lines = file.readlines()
@@ -21,4 +32,7 @@ for lines in marks_lines:
 
     subject_marks[subject][name] = marks
 
-print(subject_marks)
+# print(subject_marks)
+
+for subject, dataset in subject_marks.items():
+    top_marks(subject, dataset)
